@@ -10,6 +10,8 @@ import java.util.List;
  * Created by tong on 10/12/2016.
  * out of memory when compressed class space exceeded.
  * <img src="https://raw.githubusercontent.com/tongc/tinyhttploadtest/master/src/main/resources/compressedspaceoom.png"/>
+ * out of memory when entire metaspace is filled up.
+ * <img src="https://raw.githubusercontent.com/tongc/tinyhttploadtest/master/src/main/resources/metaspacefilledup.png"/>
  */
 public class ClassGenerator {
     private static final int BUFFER = 1024;
