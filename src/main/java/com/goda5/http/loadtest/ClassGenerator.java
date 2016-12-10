@@ -17,6 +17,9 @@ public class ClassGenerator {
     public static void main(String[] args) {
         ClassGenerator classGenerator = new ClassGenerator();
         // Load just some class with class loaders until perm gen space fills.
+        // before metaspace is all filled up, the compressed space will be filled up first
+        //-XX: CompressedClassSpaceSize=4g, exceeds acceptable bounds will result in a message such as
+        //CompressedClassSpaceSize of 4294967296 is invalid; must be between 1048576 and 3221225472.
         while (true) {
             classGenerator.classLoader();
         }
