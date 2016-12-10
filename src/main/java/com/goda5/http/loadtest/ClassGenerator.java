@@ -8,7 +8,8 @@ import java.util.List;
 
 /**
  * Created by tong on 10/12/2016.
- * <img src="https://images.google.co.uk/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"/>
+ * out of memory when compressed class space exceeded.
+ * <img src="https://raw.githubusercontent.com/tongc/tinyhttploadtest/master/src/main/resources/compressedspaceoom.png"/>
  */
 public class ClassGenerator {
     private static final int BUFFER = 1024;
