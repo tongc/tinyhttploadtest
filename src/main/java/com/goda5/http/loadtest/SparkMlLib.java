@@ -8,10 +8,11 @@ import org.apache.spark.ml.linalg.Vector;
 import org.apache.spark.ml.linalg.Vectors;
 import org.apache.spark.mllib.stat.Statistics;
 
+import java.io.IOException;
 import java.util.List;
 
 public class SparkMlLib {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
         sparseAndDenseArray();
         statistics();
     }
@@ -26,17 +27,20 @@ public class SparkMlLib {
         System.out.println(dense.toSparse());
     }
 
-    private static void statistics() throws InterruptedException {
+    private static void statistics() throws InterruptedException, IOException {
         SparkConf conf = new SparkConf()
                 .setAppName("Spark Example")
                 .setMaster("local[2]")
                 .set("spark.executor.memory", "1G");
         JavaSparkContext sparkContext = new JavaSparkContext(conf);
-        List<Double> es = Lists.newArrayList(1.1, 2.2, 3.3, 4.4, 5.5);
+        List<Double> es = Lists.newArrayList(1.1, 2.2);
         JavaDoubleRDD rdd1 = sparkContext.parallelizeDoubles(es);
-        List<Double> es1 = Lists.newArrayList(2.1, 3.2, 4.3, 5.4, 6.5);
+        List<Double> es1 = Lists.newArrayList(3.1, 4.2);
         JavaDoubleRDD rdd2 = sparkContext.parallelizeDoubles(es1);
-        double dataSetCompare = Statistics.corr(rdd1.srdd(), rdd2.srdd(), "dataSetCompare");
-        System.out.println("outoutout" + dataSetCompare);
+        double dataSetCompare = Statistics.corr(rdd1.srdd(), rdd2.srdd(), "pearson");
+        System.err.println("pearson coefficient" + dataSetCompare);
+        dataSetCompare = Statistics.corr(rdd1.srdd(), rdd2.srdd(), "spearman");
+        System.err.println("spearman coefficient" + dataSetCompare);
+        System.in.read();
     }
 }
