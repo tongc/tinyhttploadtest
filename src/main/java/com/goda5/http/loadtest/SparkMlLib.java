@@ -33,9 +33,9 @@ public class SparkMlLib {
                 .setMaster("local[2]")
                 .set("spark.executor.memory", "1G");
         JavaSparkContext sparkContext = new JavaSparkContext(conf);
-        List<Double> es = Lists.newArrayList(1.1, 2.2);
+        List<Double> es = Lists.newArrayList(2.0, 4.0);
         JavaDoubleRDD rdd1 = sparkContext.parallelizeDoubles(es);
-        List<Double> es1 = Lists.newArrayList(3.1, 4.2);
+        List<Double> es1 = Lists.newArrayList(4.0, 16.0);
         JavaDoubleRDD rdd2 = sparkContext.parallelizeDoubles(es1);
         double dataSetCompare = Statistics.corr(rdd1.srdd(), rdd2.srdd(), "pearson");
         System.err.println("pearson coefficient" + dataSetCompare);
