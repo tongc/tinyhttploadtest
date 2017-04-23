@@ -1,7 +1,18 @@
 package com.goda5.http.loadtest;
 
+import com.google.common.collect.Maps;
+
+import java.util.Map;
+
 public class XorTest {
+    private static Map<String, String> result = Maps.newHashMap();
     public static void main(String[] args) {
+        result.put("a", "b");
+        result.put("c", "d");
+
+        Map<String, String> result2 = Maps.newHashMap(result);
+        result2.put("f", "g");
+
         System.out.println("xor" + (0b111 ^ 0b101));
         System.out.println("xor" + (1 ^ 2));
         System.out.println("xor" + (100 ^ 200));
